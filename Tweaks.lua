@@ -20,8 +20,9 @@ core.Tweaks = {
         category = "Frames",
         func = function()
             hooksecurefunc("CompactUnitFrame_UpdateName", function(frame)
+                if issecretvalue(frame) then return end
                 if frame.optionTable == DefaultCompactUnitFrameOptions then
-                    frame.name:Hide()
+                    frame.roleIcon:SetAlpha(0)
                 end
             end)
         end
@@ -33,8 +34,9 @@ core.Tweaks = {
         category = "Frames",
         func = function()
             hooksecurefunc("CompactUnitFrame_UpdateName", function(frame)
+                if issecretvalue(frame) then return end
                 if frame.optionTable == DefaultCompactUnitFrameOptions then
-                    frame.roleIcon:SetAlpha(0)
+                    frame.name:Hide()
                 end
             end)
         end
