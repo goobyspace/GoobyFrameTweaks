@@ -43,21 +43,12 @@ core.Tweaks = {
     },
     {
         name = core.TweakNames.ArenaNumbers,
-        title = "Arena nameplate numbers",
+        title = "Platynator Arena Numbers",
         category = "Nameplates",
-        description = "Change the names of enemies in arenas to numbers so they match up with arena 1-5 targeting binds.",
+        description =
+        "Change the names of enemies in arenas to numbers so they match up with arena 1-5 targeting binds, only for platynator nameplates.",
         func = function()
-            -- hooksecurefunc("CompactUnitFrame_UpdateName", function(F)
-            --     if IsActiveBattlefieldArena() and F.unit:find("nameplate") then
-            --         for i = 1, 5 do
-            --             if UnitIsUnit(F.unit, "arena" .. i) then
-            --                 F.name:SetText(i)
-            --                 F.name:SetTextColor(1, 1, 0);
-            --                 break;
-            --             end
-            --         end
-            --     end
-            -- end)
+            core:initializeArenaNumbers();
         end
     },
     {

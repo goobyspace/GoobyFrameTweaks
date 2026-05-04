@@ -31,3 +31,24 @@ function core.Utils:MapUnique(arr, func)
     end
     return newArray
 end
+
+function core.Utils:FormatTime(seconds)
+    local minutes = floor(seconds / 60)
+    local secondsLeft = seconds % 60
+    if secondsLeft < 10 and minutes > 0 then
+        secondsLeft = "0" .. secondsLeft
+    end
+    if minutes > 0 then
+        return minutes .. ":" .. secondsLeft
+    else
+        return secondsLeft
+    end
+end
+
+function core.Utils:DefaultsTableChecker(current, defaults)
+    for key, value in pairs(defaults) do
+        if current[key] == nil then
+            current[key] = value;
+        end
+    end
+end

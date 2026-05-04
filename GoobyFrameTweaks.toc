@@ -4,6 +4,7 @@
 ## Version: @project-version@
 ## DefaultState: enabled
 ## SavedVariables: GoobyFrameTweaksVariables
+## OptionalDeps: Platynator
 ## Author: gooby.space
 ## X-Curse-Project-ID: -
 ## X-Wago-ID: -
@@ -11,5 +12,6 @@
 
 Utils.lua
 Settings.lua
+tweaks/arenanumbers/ArenaNumbers.lua
 Tweaks.lua
 Init.lua
