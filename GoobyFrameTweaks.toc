@@ -1,4 +1,4 @@
-## Interface: 120005
+## Interface: 120007
 ## Title: Gooby Frame Tweaks
 ## Notes: Various tweaks for the Midnight user interface
 ## Version: @project-version@
@@ -10,8 +10,16 @@
 ## X-Wago-ID: -
 ## Category: User Interface
 
+tweaks/barframes/player/ResourceUtils.lua
+tweaks/barframes/player/HPBar.lua
+tweaks/barframes/player/PrimaryResource.lua
+tweaks/barframes/player/SecondaryResource.lua
+tweaks/barframes/player/Widgets.lua
+tweaks/barframes/BarFrames.lua
+
+tweaks/arenanumbers/ArenaNumbers.lua
+
 Utils.lua
 Settings.lua
-tweaks/arenanumbers/ArenaNumbers.lua
 Tweaks.lua
 Init.lua
