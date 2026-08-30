@@ -77,13 +77,4 @@ core.Tweaks = {
             end
         end
     },
-    {
-        name = core.TweakNames.BarFrames,
-        title = "Bar-style frames",
-        description = "Adds thin bar-style player and target frames.",
-        category = "Frames",
-        func = function()
-            core:InitializeBarFrames();
-        end
-    }
 }
