@@ -49,7 +49,7 @@ core.Tweaks = {
         description =
         "Change the names of enemies in arenas to numbers so they match up with arena 1-5 targeting binds, only for platynator nameplates.",
         func = function()
-            core:initializeArenaNumbers();
+            --core:initializeArenaNumbers();
         end
     },
     {
