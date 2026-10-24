@@ -11,6 +11,8 @@
 ## Category: User Interface
 
 tweaks/arenanumbers/ArenaNumbers.lua
+tweaks/raidframegrowth/RaidFrameGrowth.lua
+tweaks/raidframegrowth/RaidFrameLayouts.lua
 
 Utils.lua
 Settings.lua

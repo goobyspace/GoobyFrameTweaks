@@ -9,6 +9,7 @@ core.TweakNames = {
     ArenaCommands = "ArenaCommands",
     DebugCommands = "DebugCommands",
     BagSlotCount = "BagSlotCount",
+    RaidFrameGrowth = "RaidFrameGrowth",
 };
 
 -- variables are saved in the GoobyFrameTweaksVariables dictionary under their respective TweakName
@@ -41,6 +42,16 @@ core.Tweaks = {
                     frame.name:Hide();
                 end;
             end);
+        end
+    },
+    {
+        name = core.TweakNames.RaidFrameGrowth,
+        title = "Raid frames grow right to left",
+        description =
+        "Makes raid frames grow from right to left instead of left to right. Raid frame size and column size can change with the raid size (see RaidFrameLayouts.lua), done by switching between copies of your Edit Mode layout out of combat. Position changes may be deferred during combat.",
+        category = "Frames",
+        func = function()
+            core:initializeRaidFrameGrowth();
         end
     },
     {
