@@ -2,7 +2,7 @@ local _, core = ...;
 
 -- this dictionary is literally just so i cant mess up spelling the keys
 core.TweakNames = {
-    ArenaNumbers = "ArenaNumbers",
+    PlatynatorTRP = "PlatynatorTRP",
     RaidRoleIcon = "RaidRoleIcon",
     RaidName = "RaidName",
     BarFrames = "BarFrames",
@@ -55,13 +55,13 @@ core.Tweaks = {
         end
     },
     {
-        name = core.TweakNames.ArenaNumbers,
-        title = "Platynator Arena Numbers",
+        name = core.TweakNames.PlatynatorTRP,
+        title = "Platynator TRP names",
         category = "Nameplates",
         description =
-        "Change the names of enemies in arenas to numbers so they match up with arena 1-5 targeting binds, only for platynator nameplates.",
+        "Show TRP player names and colours without targeting, including when nameplates reappear. Requires Platynator and Total RP 3's Platynator module. Respects TRP customization and hiding settings. Extends automatic profile fetching to all visible nameplates while retaining TRP's delays and request throttling. Automatic fetching must be enabled in TRP. Use /gfttrp for diagnostics.",
         func = function()
-            --core:initializeArenaNumbers();
+            core:initializePlatynatorTRP();
         end
     },
     {

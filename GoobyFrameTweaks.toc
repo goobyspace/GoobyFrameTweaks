@@ -4,13 +4,13 @@
 ## Version: @project-version@
 ## DefaultState: enabled
 ## SavedVariables: GoobyFrameTweaksVariables
-## OptionalDeps: Platynator
+## OptionalDeps: Platynator, totalRP3
 ## Author: gooby.space
 ## X-Curse-Project-ID: -
 ## X-Wago-ID: -
 ## Category: User Interface
 
-tweaks/arenanumbers/ArenaNumbers.lua
+tweaks/platynatortrp/PlatynatorTRP.lua
 tweaks/raidframegrowth/RaidFrameGrowth.lua
 tweaks/raidframegrowth/RaidFrameLayouts.lua
 
