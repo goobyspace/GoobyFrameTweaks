@@ -11,6 +11,7 @@
 ## Category: User Interface
 
 tweaks/platynatortrp/PlatynatorTRP.lua
+tweaks/raidframetrp/RaidFrameTRP.lua
 tweaks/raidframegrowth/RaidFrameGrowth.lua
 tweaks/raidframegrowth/RaidFrameLayouts.lua
 

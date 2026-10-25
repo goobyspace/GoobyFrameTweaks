@@ -3,6 +3,7 @@ local _, core = ...;
 -- this dictionary is literally just so i cant mess up spelling the keys
 core.TweakNames = {
     PlatynatorTRP = "PlatynatorTRP",
+    RaidFrameTRP = "RaidFrameTRP",
     RaidRoleIcon = "RaidRoleIcon",
     RaidName = "RaidName",
     BarFrames = "BarFrames",
@@ -16,6 +17,16 @@ core.TweakNames = {
 -- we pass the tweaknames to the function, incase they need to do something if they're turned off
 -- otherwise loop over all of the tweaks, check if this is the tweak we need, and then call its function with its toggled state
 core.Tweaks = {
+    {
+        name = core.TweakNames.RaidFrameTRP,
+        title = "TRP raid frame health colours",
+        description =
+        "Use known TRP profile colours for raid-frame health bars. Respects TRP's colour contrast setting once TRP has finished loading. Requires Total RP 3.",
+        category = "Frames",
+        func = function()
+            core:initializeRaidFrameTRP();
+        end
+    },
     {
         name = core.TweakNames.RaidRoleIcon,
         title = "Hide raid role icons",
@@ -48,7 +59,7 @@ core.Tweaks = {
         name = core.TweakNames.RaidFrameGrowth,
         title = "Raid frames grow right to left",
         description =
-        "Makes raid frames grow from right to left instead of left to right. Raid frame size and column size can change with the raid size (see RaidFrameLayouts.lua), done by switching between copies of your Edit Mode layout out of combat. Position changes may be deferred during combat.",
+        "Makes raid frames grow from right to left instead of left to right. Raid frame size and column size can change with the raid size (see RaidFrameLayouts.lua), done by switching between copies of your Edit Mode layout out of combat.",
         category = "Frames",
         func = function()
             core:initializeRaidFrameGrowth();
@@ -59,7 +70,7 @@ core.Tweaks = {
         title = "Platynator TRP names",
         category = "Nameplates",
         description =
-        "Show TRP player names and colours without targeting, including when nameplates reappear. Requires Platynator and Total RP 3's Platynator module. Respects TRP customization and hiding settings. Extends automatic profile fetching to all visible nameplates while retaining TRP's delays and request throttling. Automatic fetching must be enabled in TRP. Use /gfttrp for diagnostics.",
+        "Show TRP player names and colours without targeting.",
         func = function()
             core:initializePlatynatorTRP();
         end
