@@ -118,7 +118,7 @@ local function syncLayouts()
             elseif not warnedAboutSlots then
                 warnedAboutSlots = true;
                 print(
-                    "GoobyFrameTweaks: no free character edit mode layout slot, some raid sizes will use your own layout");
+                    "GoobyFrameTweaks: no free character edit mode layout slot, delete some");
             end;
         end;
     end;
