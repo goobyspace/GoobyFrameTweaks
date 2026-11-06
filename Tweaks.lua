@@ -4,6 +4,7 @@ local _, core = ...;
 core.TweakNames = {
     PlatynatorTRP = "PlatynatorTRP",
     RaidFrameTRP = "RaidFrameTRP",
+    DetailsTRP = "DetailsTRP",
     RaidRoleIcon = "RaidRoleIcon",
     RaidName = "RaidName",
     BarFrames = "BarFrames",
@@ -25,6 +26,16 @@ core.Tweaks = {
         category = "Frames",
         func = function()
             core:initializeRaidFrameTRP();
+        end
+    },
+    {
+        name = core.TweakNames.DetailsTRP,
+        title = "TRP Details! bar colours",
+        description =
+        "Use known TRP profile colours instead of class colours for Details! bars. Names hidden by Blizzard during combat keep their class colour. Requires Details! and Total RP 3.",
+        category = "Frames",
+        func = function()
+            core:initializeDetailsTRP();
         end
     },
     {
