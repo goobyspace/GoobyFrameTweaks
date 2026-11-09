@@ -5,26 +5,35 @@ local trpConfigReady = false
 local refreshPending = false
 local hookCalls = 0
 
-local function getCharacterID(guid)
-    if issecretvalue(guid) or type(guid) ~= "string" or not guid:find("^Player%-") then
+local function getSecretGUIDUnit(guid, bar)
+    -- secret guids cant be read but UnitTokenFromGUID still accepts them for group members
+    local unit = UnitTokenFromGUID(guid)
+    if issecretvalue(unit) or type(unit) ~= "string" then
+        if not issecretvalue(bar.isPlayer) and bar.isPlayer then return "player" end
         return
     end
-
-    local characterID = TRP3_NameUtil.GetQualifiedNameByGUID(guid)
-    if issecretvalue(characterID) or type(characterID) ~= "string" then return end
-    return characterID
+    local isPlayer = UnitIsPlayer(unit)
+    if issecretvalue(isPlayer) or not isPlayer then return end
+    return unit
 end
 
-local function getBarGUID(actor, bar)
+local function getCharacterID(actor, bar)
     -- the blizzard damage meter path passes a fake actor with an empty serial and stores the guid on the bar
     local guid = actor.serial
     if not issecretvalue(guid) and guid == "" then
         guid = bar.actorGUID
-        if issecretvalue(guid) and not issecretvalue(bar.isPlayer) and bar.isPlayer then
-            guid = UnitGUID("player")
-        end
     end
-    return guid
+
+    local characterID
+    if issecretvalue(guid) then
+        local unit = getSecretGUIDUnit(guid, bar)
+        if unit then characterID = TRP3_NameUtil.GetQualifiedName(unit) end
+    elseif type(guid) == "string" and guid:find("^Player%-") then
+        characterID = TRP3_NameUtil.GetQualifiedNameByGUID(guid)
+    end
+
+    if issecretvalue(characterID) or type(characterID) ~= "string" then return end
+    return characterID
 end
 
 local function updateBarColor(actor, bar, instance, _, _, _, a)
@@ -34,7 +43,7 @@ local function updateBarColor(actor, bar, instance, _, _, _, a)
         return
     end
 
-    local characterID = getCharacterID(getBarGUID(actor, bar))
+    local characterID = getCharacterID(actor, bar)
     if not characterID then return end
     local r, g, b = core.Utils:GetTRPColor(characterID, trpConfigReady)
     if not r then return end
@@ -70,8 +79,9 @@ SlashCmdList.GFTDETAILS = function()
         if bar:IsShown() and not bar.isTotalBar then
             local guid = bar.actorGUID
             local secret = issecretvalue(guid)
-            local id = getCharacterID(getBarGUID({ serial = "" }, bar))
-            print(i, "guidSecret:", secret, "guid:", secret and "?" or tostring(guid),
+            local unit = secret and getSecretGUIDUnit(guid, bar)
+            local id = getCharacterID({ serial = "" }, bar)
+            print(i, "guidSecret:", secret, "guid:", secret and "?" or tostring(guid), "unit:", tostring(unit),
                 "isPlayer:", issecretvalue(bar.isPlayer) and "?" or tostring(bar.isPlayer),
                 "id:", tostring(id), "colour:", id and core.Utils:GetTRPColor(id, trpConfigReady) or "nil")
         end
@@ -91,7 +101,8 @@ end
 
 function core:initializeDetailsTRP()
     if initialized then return true end
-    if not (issecretvalue and TRP3_NameUtil and TRP3_NameUtil.GetQualifiedNameByGUID
+    if not (issecretvalue and UnitTokenFromGUID and TRP3_NameUtil and TRP3_NameUtil.GetQualifiedNameByGUID
+        and TRP3_NameUtil.GetQualifiedName
         and Details and Details.SetBarColors and Details.RefreshMainWindow
         and AddOn_TotalRP3 and AddOn_TotalRP3.Player
         and AddOn_TotalRP3.Player.CreateFromCharacterID
